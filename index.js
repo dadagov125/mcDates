@@ -1,14 +1,13 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
+var McDatesController = /** @class */ (function () {
+    function McDatesController() {
     }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./McDatesComponent"], factory);
+    return McDatesController;
+}());
+var McDatesComponent = /** @class */ (function () {
+    function McDatesComponent() {
     }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var McDatesComponent_1 = require("./McDatesComponent");
-    exports.mcDatesModule = angular.module("mcDatesModule", []).component("mcDates", new McDatesComponent_1.McDatesComponent());
-});
+    return McDatesComponent;
+}());
+angular.module("mcDates", [])
+    .component("mcDates", new McDatesComponent());
+//# sourceMappingURL=index.js.map

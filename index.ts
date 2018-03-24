@@ -1,3 +1,12 @@
-import {McDatesComponent} from "./McDatesComponent";
+class McDatesController implements angular.IComponentController {
 
-export const mcDatesModule = angular.module("mcDatesModule", []).component("mcDates", new McDatesComponent());
+}
+
+
+class McDatesComponent implements angular.IComponentOptions {
+
+
+}
+
+angular.module("mcDates", [])
+    .component("mcDates", new McDatesComponent());
