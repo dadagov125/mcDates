@@ -7,5 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.9",
+    "angular-animate": "^1.6.9",
+    "angular-aria": "^1.6.9",
+    "angular-material": "^1.1.8",
+    "angular-messages": "^1.6.9",
+    "moment": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.6.43",
+    "typescript": "^2.7.2"
+  }
 }
