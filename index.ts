@@ -55,7 +55,10 @@ class McDatesController implements angular.IComponentController {
 
     change() {
         if (this.mcChange !== undefined)
-            this.mcChange()
+            setTimeout(() => {
+                this.mcChange()
+            }, 20)
+
     }
 
     setDate(value) {
@@ -101,23 +104,35 @@ class McDatesComponent implements angular.IComponentOptions {
         this.controller = McDatesController;
         this.controllerAs = "$ctrl";
         this.template = `
-          <div>          
-                  с
-                  <md-datepicker ng-change="$ctrl.change()"  md-max-date="$ctrl.to" ng-model="$ctrl.from" md-placeholder="Enter date from"></md-datepicker>                  
-     
-                  по
-                  <md-datepicker ng-change="$ctrl.change()" md-min-date="$ctrl.from" ng-model="$ctrl.to" md-placeholder="Enter date to"></md-datepicker>            
-                   
-                 
-          </div>
-          <div>
-           <a ng-click="$ctrl.setDate('yesterday')" href="">Вчера</a>
-           <a ng-click="$ctrl.setDate('today')" href="">Сегодня</a>
-           <a ng-click="$ctrl.setDate('two_weeks')" href="">2 недели</a>
-           <a ng-click="$ctrl.setDate('month')" href="">Месяц</a>
-           <a ng-click="$ctrl.setDate('all')" href="">Все</a>
-          </div>
-      
+          <div layout="column" flex="40" flex-offset="35" layout-align="center">           
+                    <div layout="row">  
+                           <div flex="33"  layout="column">с</div>  
+                           <div flex="33" layout="column">по</div>     
+                    </div> 
+                    <div layout="row"> 
+                           <div flex="30" layout="column">
+                             <md-datepicker class="picker" ng-change="$ctrl.change()"  md-max-date="$ctrl.to" ng-model="$ctrl.from" md-placeholder="Enter date from"></md-datepicker> 
+                            </div>  
+                           <div flex="30" layout="column">
+                             <md-datepicker class="picker" ng-change="$ctrl.change()" md-min-date="$ctrl.from" ng-model="$ctrl.to" md-placeholder="Enter date to"></md-datepicker> 
+                            </div>   
+                    </div>                     
+                    <div layout="row"    class="mc-dates-links"> 
+                       <a   ng-click="$ctrl.setDate('yesterday')" href="">Вчера</a>
+                       <a flex-offset="5"  ng-click="$ctrl.setDate('today')" href="">Сегодня</a>
+                       <a flex-offset="5" ng-click="$ctrl.setDate('two_weeks')" href="">2 недели</a>
+                       <a flex-offset="5" ng-click="$ctrl.setDate('month')" href="">Месяц</a>
+                       <a flex-offset="5"  ng-click="$ctrl.setDate('all')" href="">Все</a>
+                    </div> 
+               <style>
+               .picker .md-datepicker-button {
+                  display: none;
+                }
+               .mc-dates-links{
+                    font-size: 12px;
+               }
+               </style>                                        
+          </div>    
         `;
         this.bindings = {
             "dateFrom": "=",

@@ -17,10 +17,11 @@
     <script>
         angular.module('App', ["mcDatesModule"])
             .controller('AppController', ['$scope', function ($scope) {
-                $scope.dateFrom;
-                $scope.dateTo;
+                $scope.dateFrom = '';
+                $scope.dateTo = '';
                 $scope.onChangeDate = function () {
-                    console.log("onChangeDate")
+                    console.log("onChangeDate");
+                    alert("Дата 1: " + $scope.dateFrom + " Дата 2: " + $scope.dateTo)
                 }
 
             }]);
@@ -30,19 +31,29 @@
 </head>
 <body ng-app="App">
 
-<div ng-controller="AppController">
+<div layout="column" ng-controller="AppController">
+    <md-toolbar>
 
-    <div>
-        <div>
-            <input ng-model="dateFrom">
+    </md-toolbar>
+    <md-content>
 
-            <input ng-model="dateTo">
-        </div>
-    </div>
 
-    <div>
         <mc-dates date-from="dateFrom" date-to="dateTo" mc-change="onChangeDate()"></mc-dates>
-    </div>
+
+
+        <div flex-offset="35">
+            <md-input-container>
+                <label>Дата 1</label>
+                <input ng-model="dateFrom">
+            </md-input-container>
+            <md-input-container>
+                <label>Дата 2</label>
+                <input ng-model="dateTo">
+            </md-input-container>
+        </div>
+
+
+    </md-content>
 
 
 </div>
