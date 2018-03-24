@@ -1,3 +1,3 @@
-export class McDatesController {
+export class McDatesController implements angular.IComponentController {
 
 }

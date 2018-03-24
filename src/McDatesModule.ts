@@ -1,0 +1,1 @@
+export const mcDatesModule = angular.module("mcDates", []);

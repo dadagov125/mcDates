@@ -1,3 +1,3 @@
-export class McDatesComponent {
+export class McDatesComponent implements angular.IComponentOptions {
 
 }
