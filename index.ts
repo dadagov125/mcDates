@@ -144,5 +144,5 @@ class McDatesComponent implements angular.IComponentOptions {
 
 }
 
-angular.module("mcDatesModule", ["ngMaterial", "ngAnimate", "ngAria", 'ngMessages'])
+angular.module("mcDatesModule", ["ngMaterial"])
     .component("mcDates", new McDatesComponent());

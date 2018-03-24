@@ -98,6 +98,6 @@ var McDatesComponent = /** @class */ (function () {
     }
     return McDatesComponent;
 }());
-angular.module("mcDatesModule", ["ngMaterial", "ngAnimate", "ngAria", 'ngMessages'])
+angular.module("mcDatesModule", ["ngMaterial"])
     .component("mcDates", new McDatesComponent());
 //# sourceMappingURL=index.js.map
