@@ -2,25 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>mcDates</title>
+
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
 
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
 
     <script src="index.js"></script>
+    <script>
+        angular.module('App', ["mcDatesModule"])
+            .controller('AppController', ['$scope', function ($scope) {
+                $scope.dateFrom;
+                $scope.dateTo;
+                $scope.onChangeDate = function () {
+                    console.log("onChangeDate")
+                }
+
+            }]);
+
+
+    </script>
 </head>
-<body>
+<body ng-app="App">
 
-<script>
-    angular.module('App', ["mcDates"])
-        .controller('AppController', ['$scope', function ($scope) {
+<div ng-controller="AppController">
 
-        }]);
+    <div>
+        <div>
+            <input ng-model="dateFrom">
 
-    angular.element(document).ready(function () {
-        angular.bootstrap(document, ["App"]);
-    });
-</script>
+            <input ng-model="dateTo">
+        </div>
+    </div>
 
-<mc-dates></mc-dates>
+    <div>
+        <mc-dates date-from="dateFrom" date-to="dateTo" mc-change="onChangeDate()"></mc-dates>
+    </div>
+
+
+</div>
+
+
 </body>
 </html>
