@@ -1,6 +1,13 @@
 const FORMAT = "YYYY-MM-DD";
+
 class McDatesController implements angular.IComponentController {
     [x: string]: any;
+
+    _minDate: Date;
+
+
+    _maxDate: Date;
+
 
     get from() {
         return this.dateFrom
@@ -8,6 +15,7 @@ class McDatesController implements angular.IComponentController {
 
     set from(value) {
         let m = moment(value, FORMAT);
+        this._minDate = m.toDate();
         this.dateFrom = m.isValid() ? m.format(FORMAT) : null
     }
 
@@ -17,6 +25,7 @@ class McDatesController implements angular.IComponentController {
 
     set to(value) {
         let m = moment(value, FORMAT);
+        this._maxDate = m.toDate();
         this.dateTo = m.isValid() ? m.format(FORMAT) : null
     }
 
@@ -76,10 +85,10 @@ class McDatesComponent implements angular.IComponentOptions {
                     </div> 
                     <div layout="row"> 
                            <div flex="30" layout="column">
-                             <md-datepicker class="picker" ng-change="$ctrl.change()"  md-max-date="$ctrl.to" ng-model="$ctrl.from" md-placeholder="Enter date from"></md-datepicker> 
+                             <md-datepicker class="picker" ng-change="$ctrl.change()"  md-max-date="$ctrl._maxDate" ng-model="$ctrl.from" md-placeholder="Enter date from"></md-datepicker> 
                             </div>  
                            <div flex="30" layout="column">
-                             <md-datepicker class="picker" ng-change="$ctrl.change()" md-min-date="$ctrl.from" ng-model="$ctrl.to" md-placeholder="Enter date to"></md-datepicker> 
+                             <md-datepicker class="picker" ng-change="$ctrl.change()" md-min-date="$ctrl._minDate" ng-model="$ctrl.to" md-placeholder="Enter date to"></md-datepicker> 
                             </div>   
                     </div>                     
                     <div layout="row"    class="mc-dates-links"> 
@@ -118,5 +127,9 @@ angular.module("mcDatesModule", ["ngMaterial"])
                 return m.format("YYYY.MM.DD");
             return ""
         };
+
+        $mdDateLocaleProvider.parseDate = function (stringDate) {
+            return new Date(stringDate)
+        }
     })
     .component("mcDates", new McDatesComponent());
