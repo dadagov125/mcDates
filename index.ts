@@ -124,7 +124,7 @@ angular.module("mcDatesModule", ["ngMaterial"])
         $mdDateLocaleProvider.formatDate = function (date) {
             let m = moment(date);
             if (m.isValid())
-                return m.format("YYYY.MM.DD");
+                return m.format("DD.MM.YYYY");
             return ""
         };
 
