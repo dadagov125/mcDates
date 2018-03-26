@@ -1,51 +1,25 @@
+var FORMAT = "YYYY-MM-DD";
 var McDatesController = /** @class */ (function () {
-    function McDatesController($scope) {
-        var _this = this;
-        this.$scope = $scope;
-        this.FORMAT = "YYYY-MM-DD";
-        $scope.$watch(function () { return _this.dateFrom; }, function (newValue, oldValue) {
-            var m = moment(newValue, _this.FORMAT);
-            if (m.format(_this.FORMAT) === newValue) {
-                _this.from = m.toDate();
-            }
-        });
-        $scope.$watch(function () { return _this.dateTo; }, function (newValue, oldValue) {
-            var m = moment(newValue, _this.FORMAT);
-            if (m.format(_this.FORMAT) === newValue) {
-                _this.to = m.toDate();
-            }
-        });
+    function McDatesController() {
     }
     Object.defineProperty(McDatesController.prototype, "from", {
         get: function () {
-            return this._from;
+            return this.dateFrom;
         },
         set: function (value) {
-            if (value == null) {
-                this._from = undefined;
-                this.dateFrom = value;
-                return;
-            }
-            var m = moment(value, this.FORMAT);
-            this._from = m.toDate();
-            this.dateFrom = m.format(this.FORMAT);
+            var m = moment(value, FORMAT);
+            this.dateFrom = m.isValid() ? m.format(FORMAT) : null;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(McDatesController.prototype, "to", {
         get: function () {
-            return this._to;
+            return this.dateTo;
         },
         set: function (value) {
-            if (value == null) {
-                this._to = undefined;
-                this.dateTo = value;
-                return;
-            }
-            var m = moment(value, this.FORMAT);
-            this._to = m.toDate();
-            this.dateTo = m.format(this.FORMAT);
+            var m = moment(value, FORMAT);
+            this.dateTo = m.isValid() ? m.format(FORMAT) : null;
         },
         enumerable: true,
         configurable: true
@@ -103,7 +77,7 @@ angular.module("mcDatesModule", ["ngMaterial"])
     $mdDateLocaleProvider.formatDate = function (date) {
         var m = moment(date);
         if (m.isValid())
-            return m.format('YYYY.MM.DD');
+            return m.format(FORMAT);
         return "";
     };
 })

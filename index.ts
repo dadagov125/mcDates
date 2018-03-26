@@ -1,56 +1,24 @@
+const FORMAT = "YYYY-MM-DD";
+
 class McDatesController implements angular.IComponentController {
     [x: string]: any;
-    private FORMAT = "YYYY-MM-DD";
-    private _from: Date;
-    private _to: Date;
-
-    constructor(private $scope: angular.IScope) {
-
-        $scope.$watch(() => this.dateFrom, (newValue, oldValue) => {
-            let m = moment(newValue, this.FORMAT);
-            if (m.format(this.FORMAT) === newValue) {
-                this.from = m.toDate()
-            }
-        });
-
-        $scope.$watch(() => this.dateTo, (newValue, oldValue) => {
-            let m = moment(newValue, this.FORMAT);
-            if (m.format(this.FORMAT) === newValue) {
-                this.to = m.toDate()
-            }
-        })
-    }
 
     get from() {
-        return this._from
+        return this.dateFrom
     }
 
     set from(value) {
-        if (value == null) {
-            this._from = undefined;
-            this.dateFrom = value;
-            return
-        }
-        let m = moment(value, this.FORMAT);
-        this._from = m.toDate();
-        this.dateFrom = m.format(this.FORMAT)
-
+        let m = moment(value, FORMAT);
+        this.dateFrom = m.isValid() ? m.format(FORMAT) : null
     }
 
-
     get to() {
-        return this._to
+        return this.dateTo
     }
 
     set to(value) {
-        if (value == null) {
-            this._to = undefined;
-            this.dateTo = value;
-            return
-        }
-        let m = moment(value, this.FORMAT);
-        this._to = m.toDate();
-        this.dateTo = m.format(this.FORMAT)
+        let m = moment(value, FORMAT);
+        this.dateTo = m.isValid() ? m.format(FORMAT) : null
     }
 
     change() {
@@ -58,11 +26,9 @@ class McDatesController implements angular.IComponentController {
             setTimeout(() => {
                 this.mcChange()
             }, 20)
-
     }
 
     setDate(value) {
-
         switch (value) {
             case "yesterday":
                 this.from = moment().subtract(1, "days").toDate();
@@ -150,10 +116,8 @@ angular.module("mcDatesModule", ["ngMaterial"])
         $mdDateLocaleProvider.formatDate = function (date) {
             let m = moment(date);
             if (m.isValid())
-                return m.format('YYYY.MM.DD');
+                return m.format(FORMAT);
             return ""
         };
-
-
     })
     .component("mcDates", new McDatesComponent());
