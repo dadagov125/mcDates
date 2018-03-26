@@ -19,6 +19,8 @@
   },
   "devDependencies": {
     "@types/angular": "^1.6.43",
-    "typescript": "^2.7.2"
+    "ts-loader": "^4.1.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.2.0"
   }
 }

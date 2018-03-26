@@ -1,5 +1,4 @@
 const FORMAT = "YYYY-MM-DD";
-
 class McDatesController implements angular.IComponentController {
     [x: string]: any;
 
