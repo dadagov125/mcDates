@@ -21,9 +21,7 @@
                 $scope.onChangeDate = function () {
                     alert("Дата 1: " + $scope.dateFrom + " Дата 2: " + $scope.dateTo)
                 }
-
             }]);
-
 
     </script>
 </head>
@@ -31,14 +29,9 @@
 
 <div layout="column" ng-controller="AppController">
     <md-toolbar>
-
     </md-toolbar>
     <md-content>
-
-
         <mc-dates date-from="dateFrom" date-to="dateTo" mc-change="onChangeDate()"></mc-dates>
-
-
         <div flex-offset="35">
             <md-input-container>
                 <label>Дата 1</label>
@@ -49,13 +42,8 @@
                 <input ng-model="dateTo">
             </md-input-container>
         </div>
-
-
     </md-content>
-
-
 </div>
-
 
 </body>
 </html>

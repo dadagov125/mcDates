@@ -21,6 +21,7 @@
     "@types/angular": "^1.6.43",
     "ts-loader": "^4.1.0",
     "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.2.0"
   }
 }

@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "module": "umd",
+    "module": "commonjs",
     "target": "es5",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "lib": [
       "es2016",
       "dom",

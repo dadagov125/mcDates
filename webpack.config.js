@@ -1,6 +1,7 @@
+var webpack = require("webpack");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
-    mode: "development",
-    devtool: "inline-source-map",
+    mode: "production",
     entry: "./index.ts",
     output: {
         filename: "index.js"
@@ -13,5 +14,11 @@ module.exports = {
         rules: [
             {test: /\.tsx?$/, loader: "ts-loader"}
         ]
-    }
+    },
+    plugins: [
+        new UglifyJsPlugin({
+            test: /\.js($|\?)/i,
+            parallel: true
+        })
+    ]
 };

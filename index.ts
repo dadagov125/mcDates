@@ -5,9 +5,7 @@ class McDatesController implements angular.IComponentController {
 
     _minDate: Date;
 
-
     _maxDate: Date;
-
 
     get from() {
         return this.dateFrom
@@ -67,17 +65,9 @@ class McDatesController implements angular.IComponentController {
 
 class McDatesComponent implements angular.IComponentOptions {
 
-
-    public controller: ng.Injectable<ng.IControllerConstructor>;
-    public controllerAs: string;
-    public template: string;
-    bindings?: { [boundProperty: string]: string };
-    require?: { [controller: string]: string };
-
-    constructor() {
-        this.controller = McDatesController;
-        this.controllerAs = "$ctrl";
-        this.template = `
+    controller = McDatesController;
+    controllerAs = "$ctrl";
+    template = `
           <div layout="column" flex="40" flex-offset="35" layout-align="center">           
                     <div layout="row">  
                            <div flex="33"  layout="column">с</div>  
@@ -108,18 +98,15 @@ class McDatesComponent implements angular.IComponentOptions {
                </style>                                        
           </div>    
         `;
-        this.bindings = {
-            "dateFrom": "=",
-            "dateTo": "=",
-            "mcChange": "&"
-        };
-        this.require = {}
-    }
-
+    bindings = {
+        "dateFrom": "=",
+        "dateTo": "=",
+        "mcChange": "&"
+    };
 }
 
 angular.module("mcDatesModule", ["ngMaterial"])
-    .config(($mdDateLocaleProvider) => {
+    .config(["$mdDateLocaleProvider", ($mdDateLocaleProvider) => {
 
         $mdDateLocaleProvider.formatDate = function (date) {
             let m = moment(date);
@@ -128,8 +115,5 @@ angular.module("mcDatesModule", ["ngMaterial"])
             return ""
         };
 
-        $mdDateLocaleProvider.parseDate = function (stringDate) {
-            return new Date(stringDate)
-        }
-    })
+    }])
     .component("mcDates", new McDatesComponent());
