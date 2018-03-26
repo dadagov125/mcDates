@@ -145,4 +145,15 @@ class McDatesComponent implements angular.IComponentOptions {
 }
 
 angular.module("mcDatesModule", ["ngMaterial"])
+    .config(($mdDateLocaleProvider) => {
+
+        $mdDateLocaleProvider.formatDate = function (date) {
+            let m = moment(date);
+            if (m.isValid())
+                return m.format('YYYY.MM.DD');
+            return ""
+        };
+
+
+    })
     .component("mcDates", new McDatesComponent());

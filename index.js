@@ -99,5 +99,13 @@ var McDatesComponent = /** @class */ (function () {
     return McDatesComponent;
 }());
 angular.module("mcDatesModule", ["ngMaterial"])
+    .config(function ($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function (date) {
+        var m = moment(date);
+        if (m.isValid())
+            return m.format('YYYY.MM.DD');
+        return "";
+    };
+})
     .component("mcDates", new McDatesComponent());
 //# sourceMappingURL=index.js.map
